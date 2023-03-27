@@ -10,6 +10,10 @@ import 'package:sqflite/sqlite_api.dart';
 class NewsDBProvider implements Source, Cache {
   late Database db;
 
+  NewsDBProvider() {
+    init();
+  }
+
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, "items.db");
@@ -62,3 +66,5 @@ class NewsDBProvider implements Source, Cache {
     return null;
   }
 }
+
+final newsDBprovider = NewsDBProvider();
