@@ -18,7 +18,7 @@ class StoriesBloc {
 
   void Function(int event) get fetchItem => _itemsFetcher.sink.add;
 
-  void fetchTopIds() async {
+  fetchTopIds() async {
     final ids = await _repository.fetchTopIds();
     _topIds.sink.add(ids);
   }
@@ -32,6 +32,10 @@ class StoriesBloc {
       },
       <int, Future<ItemModel>>{},
     );
+  }
+
+  clearCache() {
+    return _repository.clearCache();
   }
 
   dispose() {

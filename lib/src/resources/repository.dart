@@ -8,7 +8,7 @@ class Repository {
     NewsApiProvider(),
   ];
 
-  List<Cache> caches = <Cache>[newsDBprovider];
+  final List<Cache> _caches = <Cache>[newsDBprovider];
 
   NewsApiProvider apiProvider = NewsApiProvider();
 
@@ -26,12 +26,18 @@ class Repository {
         break;
       }
     }
-    for (var chache in caches) {
-      if (caches != source) {
+    for (var chache in _caches) {
+      if (_caches != source) {
         chache.addItem(item!);
       }
     }
     return item!;
+  }
+
+  clearCache() async {
+    for (var cache in _caches) {
+      await cache.clearCache();
+    }
   }
 }
 
@@ -42,4 +48,5 @@ abstract class Source {
 
 abstract class Cache {
   Future<int> addItem(ItemModel itemModel);
+  Future<int> clearCache();
 }
