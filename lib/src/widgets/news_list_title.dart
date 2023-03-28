@@ -22,11 +22,32 @@ class NewsListTile extends StatelessWidget {
             if (!itemSnapshot.hasData) {
               return Text("Still Loadind $itemId");
             }
-            return Text(itemSnapshot.data!.title);
+            return buildTile(itemSnapshot.data!);
           },
         );
       },
       stream: bloc.items,
+    );
+  }
+
+  Widget buildTile(ItemModel itemModel) {
+    return Column(
+      children: [
+        ListTile(
+          title: Text(itemModel.title),
+          subtitle: Text(
+            "${itemModel.score} points",
+            style: const TextStyle(fontStyle: FontStyle.italic),
+          ),
+          trailing: Column(
+            children: [
+              const Icon(Icons.comment),
+              Text("${itemModel.descendants}")
+            ],
+          ),
+        ),
+        const Divider(),
+      ],
     );
   }
 }
