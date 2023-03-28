@@ -17,6 +17,8 @@ class NewsDBProvider implements Source, Cache {
   void init() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     final path = join(documentsDirectory.path, "items.db");
+
+    //databaseFactory.deleteDatabase(path);
     db = await openDatabase(
       path,
       version: 1,

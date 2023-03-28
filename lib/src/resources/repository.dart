@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:news/src/model/item_model.dart';
 import 'package:news/src/resources/news_api_provider.dart';
 import 'package:news/src/resources/news_db_provider.dart';
